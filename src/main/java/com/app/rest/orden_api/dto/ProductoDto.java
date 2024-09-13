@@ -10,4 +10,5 @@ public class ProductoDto {
     private double precioUnitario;
     private boolean estaActivo;
 
+    
 }
