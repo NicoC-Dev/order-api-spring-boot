@@ -3,12 +3,13 @@ package com.app.rest.orden_api.Service;
 import java.util.List;
 
 import com.app.rest.orden_api.Model.Producto;
-import com.app.rest.orden_api.dto.ProductoDto;
+import com.app.rest.orden_api.dto.CrudProductoDto;
+
 
 public interface IProductoService {
     
     
-    public List<ProductoDto> Listar();
+    public List<CrudProductoDto> Listar();
 
 
     public Producto buscarPorId(Integer id);
@@ -17,7 +18,7 @@ public interface IProductoService {
     public Producto guardar(Producto producto);
 
 
-    public ProductoDto guardar(ProductoDto dto);
+    public CrudProductoDto guardar(CrudProductoDto dto);
 
 
     public Producto eliminar(Producto producto);    

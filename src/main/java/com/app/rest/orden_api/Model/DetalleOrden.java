@@ -39,6 +39,6 @@ public class DetalleOrden {
     private int cantidad;
 
     @Column(name = "sub_total")
-    private int subTotal;
+    private double subtotal;
 
 }

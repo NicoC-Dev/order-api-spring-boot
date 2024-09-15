@@ -5,10 +5,7 @@ import lombok.Data;
 @Data
 public class ProductoDto {
     
-    private String nombre;
-    private String descripcion;
-    private double precioUnitario;
-    private boolean estaActivo;
+    private int id;
 
     
 }

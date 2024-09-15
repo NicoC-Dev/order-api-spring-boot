@@ -1,12 +1,13 @@
 package com.app.rest.orden_api.Mapper;
 
 import com.app.rest.orden_api.Model.Producto;
-import com.app.rest.orden_api.dto.ProductoDto;
+import com.app.rest.orden_api.dto.CrudProductoDto;
+
 
 public class ProductoMapper {
 
-    public static ProductoDto toDto(Producto producto){
-        ProductoDto dto = new ProductoDto();
+    public static CrudProductoDto toDto(Producto producto){
+        CrudProductoDto dto = new CrudProductoDto();
         dto.setNombre(producto.getNombre());
         dto.setDescripcion(producto.getDescripcion());
         dto.setPrecioUnitario(producto.getPrecioUnitario());
@@ -14,7 +15,7 @@ public class ProductoMapper {
         return dto;
     }
 
-    public static Producto toEntity(ProductoDto dto){
+    public static Producto toEntity(CrudProductoDto dto){
         Producto producto = new Producto();
         producto.setNombre(dto.getNombre());
         producto.setDescripcion(dto.getDescripcion());

@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 import com.app.rest.orden_api.Mapper.ProductoMapper;
 import com.app.rest.orden_api.Model.Producto;
 import com.app.rest.orden_api.Repository.ProductoRepository;
-import com.app.rest.orden_api.dto.ProductoDto;
+import com.app.rest.orden_api.dto.CrudProductoDto;
+
 
 @Service
 public class ProductoService implements IProductoService {
@@ -19,7 +20,7 @@ public class ProductoService implements IProductoService {
 
 
     @Override
-    public List<ProductoDto> Listar() {
+    public List<CrudProductoDto> Listar() {
         List<Producto> productos = productoRepository.findByEstaActivo(true);
         return productos.stream().map(ProductoMapper::toDto).collect(Collectors.toList());
     }
@@ -32,16 +33,9 @@ public class ProductoService implements IProductoService {
 
 
     @Override
-    public ProductoDto guardar(ProductoDto dto) {
+    public CrudProductoDto guardar(CrudProductoDto dto) {
         Producto producto = ProductoMapper.toEntity(dto);
         return ProductoMapper.toDto(productoRepository.save(producto));
-    }
-
-
-    @Override
-    public Producto guardar(Producto producto) {
-        
-        return productoRepository.save(producto);
     }
 
 
@@ -49,6 +43,12 @@ public class ProductoService implements IProductoService {
     public Producto eliminar(Producto producto) {
         producto.setEstaActivo(false);
 
+        return productoRepository.save(producto);
+    }
+
+
+    @Override
+    public Producto guardar(Producto producto) {
         return productoRepository.save(producto);
     }
 

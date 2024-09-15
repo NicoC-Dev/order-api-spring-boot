@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.rest.orden_api.Mapper.ProductoMapper;
 import com.app.rest.orden_api.Model.Producto;
 import com.app.rest.orden_api.Service.IProductoService;
+import com.app.rest.orden_api.dto.CrudProductoDto;
 import com.app.rest.orden_api.dto.ProductoDto;
+
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -33,7 +36,7 @@ public class ProductoController {
     private IProductoService productoService;
 
     @GetMapping({"productos"})
-    public List<ProductoDto> getAll()
+    public List<CrudProductoDto> getAll()
     {
         
         
@@ -41,7 +44,7 @@ public class ProductoController {
     }
     
     @GetMapping("producto/{id}")
-    public ResponseEntity<ProductoDto> getPorId(@PathVariable Integer id) {
+    public ResponseEntity<CrudProductoDto> getPorId(@PathVariable Integer id) {
         
         //creo el objeto producto con los datos del id que coincida.
         Producto producto = productoService.buscarPorId(id);
@@ -53,19 +56,19 @@ public class ProductoController {
         }
         
         //Si lo encuentra, crea un dto con los datos de producto.
-        ProductoDto dto = ProductoMapper.toDto(producto);
+        CrudProductoDto dto = ProductoMapper.toDto(producto);
 
         //Devuelve un Ok con el dto
         return ResponseEntity.ok(dto); 
     }
 
     @PostMapping("registrar_producto")
-    public ProductoDto guarardar(@RequestBody ProductoDto dto){
+    public CrudProductoDto guarardar(@RequestBody CrudProductoDto dto){
         return productoService.guardar(dto);
     }
 
     @PutMapping("/producto/{id}")
-    public ResponseEntity<ProductoDto> actualizar(@PathVariable Integer id, @RequestBody ProductoDto dto) {
+    public ResponseEntity<CrudProductoDto> actualizar(@PathVariable Integer id, @RequestBody CrudProductoDto dto) {
         Producto producto = productoService.buscarPorId(id);
         
         // Si el producto no existe, devuelve una respuesta 404 (not found)
@@ -83,7 +86,7 @@ public class ProductoController {
         Producto productoActualizado = productoService.guardar(producto);
         
         // Convierto el producto actualizado a DTO para devolverlo en la respuesta
-        ProductoDto productoDtoActualizado = ProductoMapper.toDto(productoActualizado);
+        CrudProductoDto productoDtoActualizado = ProductoMapper.toDto(productoActualizado);
         
         return ResponseEntity.ok(productoDtoActualizado);
     }

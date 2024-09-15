@@ -39,7 +39,7 @@ public class Orden {
     private LocalTime horaCreacion;
 
     @Column(name = "total")
-    private int total;
+    private double total;
 
     @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL , fetch = FetchType.LAZY, orphanRemoval = true  )
     private List<DetalleOrden> detalleOrden;
